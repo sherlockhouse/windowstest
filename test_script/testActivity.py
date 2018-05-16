@@ -15,7 +15,7 @@ config_file.close()
 
 def dosomething(textLine):
     for i in range(0, int(testtimes)) :
-        os.system("C:\\Windows\\System32\\cmd.exe /c activityPerfomance.bat " + textLine  + ' ' + sleeptime)
+        os.system("C:\\Windows\\System32\\cmd.exe /c activityPerfomance.bat "  + sleeptime + ' '  + textLine )
         print i + 1
 
 
@@ -31,7 +31,7 @@ try:
         time_file.truncate()
         time_file.close()
 
-        line += ' ' + time_file.name
+        line = time_file.name + ' ' + line
         dosomething(line)
         time_file = open(  tmpLine , 'r+')
         i = 0
