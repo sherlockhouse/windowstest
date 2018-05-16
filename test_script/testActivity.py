@@ -15,7 +15,7 @@ config_file.close()
 
 def dosomething(textLine):
     for i in range(0, int(testtimes)) :
-        os.system("C:\\Windows\\System32\\cmd.exe /c activityPerfomance.bat " + textLine.replace('\n', ' ')  + ' ' + sleeptime)
+        os.system("C:\\Windows\\System32\\cmd.exe /c activityPerfomance.bat " + textLine  + ' ' + sleeptime)
         print i + 1
 
 
@@ -25,14 +25,15 @@ try:
         if (line.replace(' ', '').replace('\r', '').replace('\n', '') == ''):
             continue
         print line
-        line.strip()
-        tmpLine = re.split(r" +", line)[2].replace('\n', '')
-        time_file = open('time.' + tmpLine + '.txt', 'w')
+        line = line.replace('\n', '')
+        tmpLine = 'time.' +  re.split(r" +", line)[0].replace('/', '') + '.txt'
+        time_file = open(tmpLine, 'w')
         time_file.truncate()
         time_file.close()
 
+        line += ' ' + time_file.name
         dosomething(line)
-        time_file = open('time.' + tmpLine + '.txt', 'r+')
+        time_file = open(  tmpLine , 'r+')
         i = 0
         openTime = 0
         for timeLine in time_file:
